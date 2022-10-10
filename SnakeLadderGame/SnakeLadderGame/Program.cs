@@ -12,36 +12,40 @@
 
             const int Ladder = 1;
             const int Snake = 2;
-
+            const int WinPoint = 100;
             Console.WriteLine("Player Position :  " + playerPosition);
 
-            Random rd = new Random();
-            int rolldice = rd.Next(1, 7);
-
-            Console.WriteLine("Dice Roll : " + rolldice);
-
-            int option = rd.Next(0, 3);
-            switch (option)
+            while (playerPosition <= WinPoint)
             {
-                case Ladder:
-                    Console.WriteLine(" Ladder :  " + rolldice);
-                    playerPosition += rolldice;
-                    break;
+                Random rd = new Random();
+                int rolldice = rd.Next(1, 7);
+                Console.WriteLine(" Dice Roll : " + rolldice);
+                int option = rd.Next(0, 3);
+                switch (option)
+                {
+                    case Ladder:
+                        Console.WriteLine(" It's Ladder ! ");
+                        playerPosition = playerPosition + rolldice;
+                        break;
+                    case Snake:
+                        Console.WriteLine(" Snake Bite !");
+                        playerPosition = playerPosition - rolldice;
+                        break;
 
-                case Snake:
-                    Console.WriteLine(" Snake Bite :  -" + rolldice);
-                    playerPosition -= rolldice;
-                    break;
+                    default:
+                        Console.WriteLine(" No Play !");
 
-                default:
-                    Console.WriteLine(" No Play !");
+                        break;
+                }
+                Console.WriteLine("Current Player Position :   " + playerPosition);
+                if (playerPosition < 0)
+                {
+                    playerPosition = 0;
+                }
 
-                    break;
             }
-            Console.WriteLine("Current Player Position :   " + playerPosition);
+            Console.ReadLine();
 
-
-            Console.ReadKey();
         }
     }
 }
